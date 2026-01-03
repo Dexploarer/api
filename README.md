@@ -230,31 +230,78 @@ Access real-time stats at `/stats` endpoint.
 
 ## 🚢 Deployment
 
-### Local Development
+### Railway (Recommended)
+
+Railway provides native Bun support with zero configuration.
+
+**1. Install Railway CLI:**
 ```bash
-bun dev
+npm install -g @railway/cli
 ```
 
-### Production (Railway, Fly.io, etc.)
+**2. Login and Deploy:**
 ```bash
-# Set environment variables
-export SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
-export SOLANA_NETWORK=mainnet
-export PORT=3001
-
-# Start server
-bun start
+railway login
+railway init
+railway up
 ```
 
-### Docker
-```dockerfile
-FROM oven/bun:1
-WORKDIR /app
-COPY package.json bun.lockb ./
-RUN bun install --production
-COPY src ./src
-CMD ["bun", "src/index.ts"]
+**3. Set Environment Variables** (in Railway dashboard):
+```env
+PORT=3001
+SOLANA_RPC_URL=https://api.devnet.solana.com
+CONVEX_URL=https://lovely-cobra-639.convex.cloud
+SOLANA_NETWORK=devnet
+RATE_LIMIT=100
+RATE_WINDOW_MS=60000
+NODE_ENV=production
 ```
+
+**4. Generate Public Domain:**
+```bash
+railway domain
+```
+
+**Configuration:** Railway automatically detects `railway.json` and uses Railpack builder for optimal Bun performance.
+
+---
+
+### Docker (Fly.io, Render, etc.)
+
+For platforms that use Docker:
+
+**Deploy to Fly.io:**
+```bash
+fly launch  # Auto-detects Bun and creates Dockerfile
+fly deploy
+```
+
+**Deploy to Render:**
+1. Connect your GitHub repo
+2. Select "Docker" as environment
+3. Set environment variables in dashboard
+4. Deploy automatically on push
+
+The included `Dockerfile` uses Bun's official slim image for production.
+
+---
+
+### Local Production Test
+```bash
+# Build (optional - for testing compiled version)
+bun build src/index.ts --outdir dist --target bun --minify
+
+# Run production mode
+NODE_ENV=production bun start
+```
+
+---
+
+### Why Not Vercel?
+
+⚠️ **Vercel does not support `Bun.serve()` applications**. Vercel's Bun runtime only works with framework adapters (Next.js, Express, Hono). This API uses pure `Bun.serve()` which requires a long-running server, incompatible with Vercel's serverless architecture.
+
+**Recommended platforms:** Railway, Fly.io, Render, Koyeb
 
 ## 📝 Implementation Status
 
