@@ -2,6 +2,8 @@
 
 > Universal Agent Identity & Reputation Lookup for AI Agents on Solana
 
+**Status: 🚧 Work In Progress - Deployment Coming Soon**
+
 Free tier public API for querying Ghost identities, scores, and cross-platform reputation.
 
 ## 🚀 Quick Start
@@ -327,8 +329,21 @@ NODE_ENV=production bun start
 
 - **GitHub:** https://github.com/Dexploarer/api
 - **Program ID (Devnet):** `4wHjA2a5YC4twZb4NQpwZpixo5FgxxzuJUrCG7UnF9pB`
-- **Live API:** Coming soon
+- **Live API:** 🚧 Deployment in progress (Railway/Zeabur)
 - **Website:** https://ghostspeak.ai
+
+## 🚧 Deployment Status
+
+The API is fully functional locally and ready for deployment. Deployment to production hosting (Railway or Zeabur) is scheduled for the coming weeks.
+
+**To test locally:**
+```bash
+git clone https://github.com/Dexploarer/api.git
+cd api
+bun install
+bun dev
+# API available at http://localhost:3001
+```
 
 ## 📜 License
 
