@@ -278,9 +278,9 @@ CMD ["bun", "src/index.ts"]
 
 ## 🔗 Links
 
+- **GitHub:** https://github.com/Dexploarer/api
 - **Program ID (Devnet):** `4wHjA2a5YC4twZb4NQpwZpixo5FgxxzuJUrCG7UnF9pB`
-- **Documentation:** https://docs.ghostspeak.ai/api
-- **GitHub:** https://github.com/ghostspeak-ai/ghostspeak
+- **Live API:** Coming soon
 - **Website:** https://ghostspeak.ai
 
 ## 📜 License
